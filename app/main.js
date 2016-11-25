@@ -51,4 +51,5 @@ document.onkeydown = (e) => {
 modalCopy.onclick = () => {
   modalUrl.select();
   document.execCommand('copy');
+  modalCopy.textContent = 'Copied!';
 };
