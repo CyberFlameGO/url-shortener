@@ -1,6 +1,6 @@
 import express from 'express';
 import firebase from 'firebase';
-import { decode, encode } from '../app/scripts/base58';
+import { decode, encode } from './base58';
 
 const fireConfig = {
   apiKey: 'AIzaSyDZoKc_3Fm3tUe-ip7ebzEMK2bhhjEt4Wk',
