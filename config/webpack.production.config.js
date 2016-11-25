@@ -10,7 +10,7 @@ module.exports = {
   ],
   output: {
     path: path.join(__dirname, '..', 'dist'),
-    filename: '[name]-[hash].min.js',
+    filename: 'public/[name]-[hash].min.js',
     publicPath: '/',
   },
   plugins: [
@@ -20,7 +20,7 @@ module.exports = {
       inject: 'body',
       filename: 'index.html',
     }),
-    new ExtractTextPlugin('[name]-[hash].min.css'),
+    new ExtractTextPlugin('public/[name]-[hash].min.css'),
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
         warnings: false,
