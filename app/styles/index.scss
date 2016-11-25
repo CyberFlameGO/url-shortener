@@ -31,6 +31,40 @@ button { font-size: inherit; font-family: inherit; cursor: pointer; }
     transition: background 150ms $standard;
 
     &:hover { background: lighten(#ff6d04, 15%); }
+
+    &.is-loading {
+        position: relative;
+        cursor: not-allowed;
+
+        &::before {
+            content: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2IiBmaWxsPSIjZmZmZmZmIj48cGF0aCBkPSJNOCAxNmMtMi4xMzcgMC00LjE0Ni0uODMyLTUuNjU3LTIuMzQzUzAgMTAuMTM3IDAgOGMwLTEuNTEzLjQyNS0yLjk4NiAxLjIyOC00LjI2MUE4LjAyIDguMDIgMCAwIDEgNC40MjEuODQ0bC42NzIgMS4zNDFhNi41MyA2LjUzIDAgMCAwLTIuNTk2IDIuMzU0QTYuNDggNi40OCAwIDAgMCAxLjUgOGMwIDMuNTg0IDIuOTE2IDYuNSA2LjUgNi41czYuNS0yLjkxNiA2LjUtNi41YzAtMS4yMy0uMzQ1LTIuNDI2LS45OTctMy40NjFhNi41MTUgNi41MTUgMCAwIDAtMi41OTYtMi4zNTRsLjY3Mi0xLjM0MWE4LjAyIDguMDIgMCAwIDEgMy4xOTMgMi44OTVBNy45ODEgNy45ODEgMCAwIDEgMTYgOGMwIDIuMTM3LS44MzIgNC4xNDYtMi4zNDMgNS42NTdTMTAuMTM3IDE2IDggMTZ6Ii8+PC9zdmc+');
+            position: absolute;
+            z-index: 3;
+            top: calc(50% - 0.5rem);
+            left: calc(50% - 0.5rem);
+            width: 1rem;
+            height: 1rem;
+            transform-origin: center center;
+            animation: spin 1000ms infinite linear;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            z-index: 2;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 3px;
+            background-color: lighten(#ff6d04, 15%);
+        }
+    }
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+
+    100% { transform: rotate(360deg); }
 }
 
 .error-bar {

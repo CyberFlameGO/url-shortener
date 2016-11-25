@@ -1,5 +1,7 @@
 import './styles/index.scss';
 
+const submitBtn = document.querySelector('.btn--submit');
+const submitInp = document.querySelector('.inp--submit');
 const modal = document.querySelector('.modal');
 const modalClose = modal.querySelector('.modal__close');
 const modalOverlay = modal.querySelector('.modal__overlay');
@@ -9,7 +11,8 @@ const errorBar = document.querySelector('.error-bar');
 
 document.querySelector('.form').onsubmit = (e) => {
   e.preventDefault();
-  const val = document.querySelector('.inp').value;
+  submitBtn.classList.add('is-loading');
+  const val = submitInp.value;
 
   fetch('api/submit', {
     method: 'POST',
@@ -20,6 +23,9 @@ document.querySelector('.form').onsubmit = (e) => {
       url: val,
     }),
   }).then(res => res.json()).then((json) => {
+    submitBtn.classList.remove('is-loading');
+    submitInp.value = '';
+
     if (json.error) {
       errorBar.classList.add('is-active');
     } else {
