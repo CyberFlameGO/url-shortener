@@ -6,10 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-  <main>
-    <form>
-      <input type="text" placeholder="URL to shorten" />
-    </form>
-  </main>
+  <div class="error-bar">You didn't submit a real URL. Try again.</div>
+
+  <form class="form">
+    <input class="inp" type="text" placeholder="URL to shorten" autofocus />
+    <button class="btn" type="submit">Do it</button>
+  </form>
+
+  <div class="modal">
+    <div class="modal__inner">
+      <button class="modal__close"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" width="12" height="12"><path d="M15.854 12.854L11 8l4.854-4.854a.503.503 0 0 0 0-.707L13.561.146a.499.499 0 0 0-.707 0L8 5 3.146.146a.5.5 0 0 0-.707 0L.146 2.439a.499.499 0 0 0 0 .707L5 8 .146 12.854a.5.5 0 0 0 0 .707l2.293 2.293a.499.499 0 0 0 .707 0L8 11l4.854 4.854a.5.5 0 0 0 .707 0l2.293-2.293a.499.499 0 0 0 0-.707z" /></svg></button>
+      <input type="text" class="modal__url inp" />
+      <button class="modal__copy-btn btn">Copy</button>
+    </div>
+    <div class="modal__overlay"></div>
+  </div>
 </body>
 </html>

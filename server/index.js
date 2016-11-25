@@ -6,15 +6,19 @@ import compression from 'compression';
 import webpack from 'webpack';
 import webpackMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
+import bodyParser from 'body-parser';
 
 import config from '../config/webpack.config';
 import urlRoute from './urlRoute';
+
 
 const app = express();
 
 const http = require('http').Server(app);
 
 app.use(compression());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(urlRoute);
 

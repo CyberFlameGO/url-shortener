@@ -1,14 +1,105 @@
-@import './reset';
-@import './circular';
 @import './variables';
 
-html { background-color: $red; }
-
 body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     min-height: 100vh;
+    padding: 0;
+    margin: 0;
     background-color: $almost-white;
-    font-family: $roboto;
+    font-size: 0.9rem;
+    font-family: -apple-system, blinkmacsystemfont, 'segoe ui', roboto, oxygen, ubuntu, cantarell, 'fira sans', 'droid sans', 'helvetica neue', sans-serif;
 }
 
-h1, h2, h3, h4 { margin: 0; font-family: $circular; }
 button { font-size: inherit; font-family: inherit; cursor: pointer; }
+
+.inp {
+    padding: 1em;
+    border: 1px solid darken($almost-white, 10%);
+    border-radius: 3px;
+    font-size: inherit;
+    font-family: inherit;
+}
+
+.btn {
+    padding: 1em;
+    border-radius: 3px;
+    border: 1px solid $almost-white;
+    background: #ff6d04;
+    color: white;
+    transition: background 150ms $standard;
+
+    &:hover { background: lighten(#ff6d04, 15%); }
+}
+
+.error-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 0.4em 0;
+    background: $red;
+    color: white;
+    text-align: center;
+    transform: translateY(-100%);
+    transition: transform 150ms $enter;
+
+    &.is-active { transform: translateY(0); }
+}
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+
+    &__inner {
+        position: relative;
+        z-index: 2;
+        padding: 2em;
+        border-radius: 3px;
+        background: white;
+        box-shadow: 0 3px 5px rgba(black, 0.2);
+        transform: scale(0.8);
+        opacity: 0;
+        transition: transform 200ms $bounce, opacity 150ms $standard;
+    }
+
+    &__close {
+        position: absolute;
+        top: 0.6em;
+        right: 0.4em;
+        border: 0;
+        background: none;
+        outline: none;
+
+        svg { fill: darken($almost-white, 20%); transition: fill 150ms $standard; }
+
+        &:hover svg { fill: darken($almost-white, 40%); }
+    }
+
+    &__overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: black;
+        opacity: 0;
+        transition: opacity 175ms $standard;
+    }
+
+    &.is-active {
+        pointer-events: initial;
+
+        .modal__inner { transform: scale(1); opacity: 1; }
+
+        .modal__overlay { opacity: 0.4; }
+    }
+}
