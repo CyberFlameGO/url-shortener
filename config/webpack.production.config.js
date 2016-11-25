@@ -2,7 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
 module.exports = {
@@ -31,14 +30,6 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
     }),
-    new CopyWebpackPlugin([
-      {
-        context: path.join(__dirname, '..', 'app'),
-        from: 'assets',
-        to: 'assets',
-        ignore: ['fonts/**/*'],
-      },
-    ]),
   ],
   module: {
     loaders: [{
@@ -49,20 +40,8 @@ module.exports = {
         presets: ['es2015', 'stage-0', 'react'],
       },
     }, {
-      test: /\.json/,
-      loader: 'json',
-    }, {
       test: /\.scss$/,
       loader: ExtractTextPlugin.extract(['css', 'sass!postcss']),
-    }, {
-      test: /\.(jpe?g|png|gif|svg)$/i,
-      loaders: [
-        'file?hash=sha512&digest=hex&name=[hash].[ext]',
-        'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false',
-      ],
-    }, {
-      test: /\.(eot|svg|ttf|woff?)$/,
-      loader: 'file?name=assets/fonts/[name].[ext]',
     }],
   },
   postcss: [

@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   devtool: 'eval-source-map',
@@ -26,14 +25,6 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development'),
     }),
-    new CopyWebpackPlugin([
-      {
-        context: path.join(__dirname, '..', 'app'),
-        from: 'assets',
-        to: 'assets',
-        ignore: ['fonts/**/*'],
-      },
-    ]),
   ],
   module: {
     loaders: [{
@@ -51,15 +42,6 @@ module.exports = {
     }, {
       test: /\.scss$/,
       loaders: ['style', 'css', 'resolve-url', 'sass?sourceMap'],
-    }, {
-      test: /\.(jpe?g|png|gif|svg)$/i,
-      loaders: [
-        'file?hash=sha512&digest=hex&name=[hash].[ext]',
-        'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false',
-      ],
-    }, {
-      test: /\.(eot|svg|ttf|woff?)$/,
-      loader: 'file?name=assets/fonts/[name].[ext]',
     }],
   },
 };
