@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
@@ -20,6 +21,7 @@ module.exports = {
       inject: 'body',
       filename: 'index.html',
     }),
+    new ExtractTextPlugin('[name]-[hash].min.css'),
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
         warnings: false,
@@ -51,7 +53,7 @@ module.exports = {
       loader: 'json',
     }, {
       test: /\.scss$/,
-      loaders: ['style', 'css', 'sass!postcss'],
+      loader: ExtractTextPlugin.extract(['css', 'sass!postcss']),
     }, {
       test: /\.(jpe?g|png|gif|svg)$/i,
       loaders: [
