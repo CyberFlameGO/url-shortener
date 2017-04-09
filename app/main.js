@@ -1,5 +1,6 @@
 import './styles/index.scss';
 
+const form = document.querySelector('.form');
 const submitBtn = document.querySelector('.btn--submit');
 const submitInp = document.querySelector('.inp--submit');
 const modal = document.querySelector('.modal');
@@ -9,7 +10,7 @@ const modalUrl = modal.querySelector('.modal__url');
 const modalCopy = modal.querySelector('.modal__copy-btn');
 const errorBar = document.querySelector('.error-bar');
 
-document.querySelector('.form').onsubmit = (e) => {
+form.onsubmit = (e) => {
   e.preventDefault();
   submitBtn.classList.add('is-loading');
   const val = submitInp.value;
