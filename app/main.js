@@ -39,7 +39,10 @@ document.querySelector('.form').onsubmit = (e) => {
 
 function closeModal() {
   modal.classList.remove('is-active');
+  modalCopy.textContent = 'Copy';
+  modalUrl.value = '';
 }
+
 modalClose.onclick = () => { closeModal(); };
 modalOverlay.onclick = () => { closeModal(); };
 document.onkeydown = (e) => {
